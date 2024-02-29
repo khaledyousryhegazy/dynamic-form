@@ -12,7 +12,7 @@ export const DynamicForm = ({ config }) => {
   const handleChange = (e, fieldName) => {
     const value = e.target.value;
 
-    setFormData({ ...formData, [fieldName]: value }); //add or update property (name is 'fieldName' and his value is 'value')
+    setFormData({ ...formData, [fieldName]: value }); //add or update property (key is 'fieldName' and his value is 'value')
     validateField(fieldName, value);
   };
 
@@ -28,7 +28,7 @@ export const DynamicForm = ({ config }) => {
       error = "Invalid email format";
     }
 
-    setErrors({ ...errors, [fieldName]: error }); //add or update property (name is 'fieldName' and his value is 'error')
+    setErrors({ ...errors, [fieldName]: error }); //add or update property (key is 'fieldName' and his value is 'error')
   };
 
   // add new fields
@@ -50,8 +50,8 @@ export const DynamicForm = ({ config }) => {
 
   //handle remove field
   const handleRemove = (fieldName) => {
-    const { [fieldName]: removedField, ...restFormData } = formData;
-    const { [fieldName]: removedError, ...restErrors } = errors;
+    const { [fieldName]: removedField, ...restFormData } = formData; // first variable 'removedField' the field we will delete , the other one 'restFormData' it's the rest of date
+    const { [fieldName]: removedError, ...restErrors } = errors; // first variable 'removedError' the error we will delete 'if it exist', the other one 'restErrors' it's the rest of errors
     setFormData(restFormData);
     setErrors(restErrors);
     config.splice(
@@ -77,7 +77,7 @@ export const DynamicForm = ({ config }) => {
       console.log(hasErrors);
     }
   };
-  // #795cfa
+
   return (
     <div className="bg-white p-7 rounded-md max-w-[600px] w-full">
       <form onSubmit={handleSubmit} className="pb-5 border-b">
