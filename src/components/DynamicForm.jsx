@@ -117,7 +117,8 @@ export const DynamicForm = ({ config }) => {
             config.some(
               (field) =>
                 !formData[field.name] || formData[field.name].trim() === ""
-            )
+            ) ||
+            config.length <= 0
           }
         >
           Submit
