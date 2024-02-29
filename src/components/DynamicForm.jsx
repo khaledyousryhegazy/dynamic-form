@@ -113,7 +113,11 @@ export const DynamicForm = ({ config }) => {
           className="bg-[#795cfa] text-white text-sm uppercase w-full p-2 tracking-widest disabled:bg-gray-400"
           type="submit"
           disabled={
-            Object.values(errors).some((error) => error) || config.length <= 0
+            Object.values(errors).some((error) => error) ||
+            config.some(
+              (field) =>
+                !formData[field.name] || formData[field.name].trim() === ""
+            )
           }
         >
           Submit
