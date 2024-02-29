@@ -44,8 +44,8 @@ export const DynamicForm = ({ config }) => {
     setErrors({ ...errors, [newField.name]: "" });
     config.push(newField);
 
-    console.log(required);
-    console.log(type);
+    setLabel();
+    document.getElementById("label").value = "";
   };
 
   //handle remove field
@@ -176,6 +176,7 @@ export const DynamicForm = ({ config }) => {
           disabled={!label}
           type="button"
           className="bg-[#795cfa] text-white text-sm uppercase w-full p-2 tracking-widest disabled:bg-gray-400"
+          // onClick={handleAddFields}
           onClick={handleAddFields}
         >
           Add Field
