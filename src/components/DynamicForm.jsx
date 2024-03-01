@@ -45,7 +45,7 @@ export const DynamicForm = ({ config }) => {
     config.push(newField);
 
     setLabel();
-    document.getElementById("label").value = "";
+    document.getElementById("label").value = ""; //
   };
 
   //handle remove field
@@ -185,3 +185,72 @@ export const DynamicForm = ({ config }) => {
     </div>
   );
 };
+
+//===========================================//
+/* this the recommendation from my senior */
+//===========================================//
+
+/*
+import React, { useState } from 'react';
+
+const DynamicForm = () => {
+  const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState({});
+
+  const formConfig = [
+    { name: 'name', type: 'text', label: 'Name', required: true },
+    { name: 'email', type: 'email', label: 'Email', required: true },
+    { name: 'age', type: 'number', label: 'Age', required: false },
+  ];
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    validateField(name, value);
+  };
+
+  const validateField = (name, value) => {
+    const fieldConfig = formConfig.find((field) => field.name === name);
+
+    if (fieldConfig.required && value.trim() === '') {
+      setErrors({ ...errors, [name]: `${fieldConfig.label} is required` });
+    } else {
+      setErrors({ ...errors, [name]: '' });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Check for any remaining errors before submitting
+    const hasErrors = Object.values(errors).some((error) => error !== '');
+
+    if (hasErrors) {
+      alert('Please fill in all required fields correctly.');
+    } else {
+      // Submit the form data
+      console.log('Form submitted:', formData);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {formConfig.map((field) => (
+        <div key={field.name}>
+          <label>{field.label}</label>
+          <input
+            type={field.type}
+            name={field.name}
+            value={formData[field.name] || ''}
+            onChange={handleInputChange}
+          />
+          <div style={{ color: 'red' }}>{errors[field.name]}</div>
+        </div>
+      ))}
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default DynamicForm;
+*/
